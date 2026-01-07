@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <div class="brand__logo">M</div>
+          <div>
+            <div class="brand__name">Marketplace</div>
+            <div class="brand__tag">List • Browse • Buy on WhatsApp</div>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <div id="sellerPill" class="seller hidden"></div>
+          <button id="openAuthModalBtn" class="btn btn--secondary">Login / Register</button>
+          <button id="logoutBtn" class="btn hidden">Logout</button>
+          <button id="openListModalBtn" class="btn btn--primary">List a product</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="panel">
+        <div class="panel__header">
+          <h2>Latest Products</h2>
+          <div class="muted" id="productCount">Loading…</div>
+        </div>
+        <div id="productsGrid" class="grid"></div>
+      </section>
+
+      <aside class="chat">
+        <div class="chat__header">
+          <div>
+            <div class="chat__title">Customer Care</div>
+            <div class="chat__subtitle">Ask anything about buying/selling</div>
+          </div>
+          <div class="pill">Online</div>
+        </div>
+
+        <div id="chatMessages" class="chat__messages" aria-live="polite"></div>
+
+        <form id="chatForm" class="chat__form" autocomplete="off">
+          <input
+            id="chatInput"
+            class="chat__input"
+            placeholder="Type your message…"
+            required
+          />
+          <button class="btn btn--secondary" type="submit">Send</button>
+        </form>
+      </aside>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h3>Seller Login / Register</h3>
+          <button id="closeAuthBtn" class="icon-btn" aria-label="Close">×</button>
+        </div>
+
+        <div class="tabs">
+          <button id="tabLogin" class="tab tab--active" type="button">Login</button>
+          <button id="tabRegister" class="tab" type="button">Register</button>
+        </div>
+
+        <form id="authForm" class="form" autocomplete="off">
+          <div id="registerNameWrap" class="hidden">
+            <label class="field">
+              <span>Your name</span>
+              <input id="sName" maxlength="60" placeholder="e.g., Ali" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>WhatsApp</span>
+            <input id="sWhatsApp" required placeholder="e.g., 0333xxxxxxx" />
+          </label>
+
+          <label class="field">
+            <span>PIN (4-8 digits)</span>
+            <input id="sPin" required inputmode="numeric" maxlength="8" placeholder="e.g., 1234" />
+          </label>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit" id="authSubmitBtn">Login</button>
+          </div>
+
+          <div id="authError" class="form__error hidden"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- List Product Modal -->
+    <div id="modalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <h3>List a product</h3>
+          <button id="closeModalBtn" class="icon-btn" aria-label="Close">×</button>
+        </div>
+
+        <form id="productForm" class="form" autocomplete="off">
+          <label class="field">
+            <span>Product name</span>
+            <input id="pName" required maxlength="120" placeholder="e.g., iPhone 13 128GB" />
+          </label>
+
+          <label class="field">
+            <span>Selling price (PKR)</span>
+            <input id="pPrice" required type="number" min="0" step="0.01" placeholder="e.g., 150000" />
+          </label>
+
+          <label class="field">
+            <span>Details</span>
+            <textarea
+              id="pDetails"
+              required
+              maxlength="2000"
+              placeholder="Condition, location, accessories, warranty, etc."
+              rows="5"
+            ></textarea>
+          </label>
+
+          <label class="field">
+            <span>Images (up to 5)</span>
+            <input id="pImages" type="file" accept="image/*" multiple />
+            <div class="muted">JPG / PNG / WEBP</div>
+          </label>
+
+          <div class="form__actions">
+            <button class="btn" type="button" id="cancelListBtn">Cancel</button>
+            <button class="btn btn--primary" type="submit">Publish</button>
+          </div>
+
+          <div id="formError" class="form__error hidden"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
